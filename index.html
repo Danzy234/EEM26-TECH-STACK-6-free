@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EEM26 — Digital Income Ecosystem | Free Training</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Meta Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '962195973419865');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=962195973419865&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0f1419;
+            --secondary: #1a1f2e;
+            --accent: #00d4ff;
+            --accent-warm: #ff6b35;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b8c1;
+            --success: #10b981;
+            --border: #2a3142;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary) 0%, #0a0e16 100%);
+            color: var(--text-primary);
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255, 107, 53, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        .logo {
+            font-size: 1.4em;
+            font-weight: 800;
+            font-family: 'Syne', sans-serif;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-warm) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .nav-badge {
+            background: var(--accent);
+            color: var(--primary);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin: 80px 0 100px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5em;
+            font-weight: 800;
+            font-family: 'Syne', sans-serif;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        .hero-highlight {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-warm) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, #0099cc 100%);
+            color: var(--primary);
+            padding: 16px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05em;
+            font-weight: 700;
+            font-family: 'Syne', sans-serif;
+            cursor: pointer;
+            margin-right: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
+        }
+
+        .cta-primary:active {
+            transform: translateY(-1px);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: var(--accent);
+            padding: 16px 40px;
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            font-size: 1.05em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-family: 'Syne', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+            height: 500px;
+        }
+
+        .visual-card {
+            position: absolute;
+            background: linear-gradient(135deg, var(--secondary) 0%, rgba(26, 31, 46, 0.5) 100%);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .card-1 {
+            top: 0;
+            left: 0;
+            width: 280px;
+            animation: floatCard 4s ease-in-out infinite;
+        }
+
+        .card-2 {
+            bottom: 0;
+            right: 0;
+            width: 280px;
+            animation: floatCard 4s ease-in-out infinite 0.5s;
+        }
+
+        .card-label {
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .card-value {
+            font-size: 2em;
+            font-weight: 800;
+            font-family: 'Space Mono', monospace;
+            margin-bottom: 15px;
+        }
+
+        .card-text {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 80px 0;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, rgba(26, 31, 46, 0.3) 0%, rgba(26, 31, 46, 0.1) 100%);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-item {
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: 800;
+            font-family: 'Space Mono', monospace;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-warm) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1em;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* Urgency Section */
+        .urgency-banner {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(0, 212, 255, 0.05) 100%);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 60px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .urgency-text {
+            font-size: 1.3em;
+            font-weight: 700;
+            font-family: 'Syne', sans-serif;
+        }
+
+        .urgency-highlight {
+            color: var(--accent-warm);
+        }
+
+        .timer-display {
+            background: var(--primary);
+            border: 1px solid var(--border);
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-family: 'Space Mono', monospace;
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            margin: 100px 0;
+        }
+
+        .section-title {
+            font-size: 2.8em;
+            font-weight: 800;
+            font-family: 'Syne', sans-serif;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1em;
+            color: var(--text-secondary);
+            margin-bottom: 50px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial {
+            background: linear-gradient(135deg, var(--secondary) 0%, rgba(26, 31, 46, 0.5) 100%);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-warm) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            background: linear-gradient(135deg, rgba(26, 31, 46, 0.5) 0%, rgba(26, 31, 46, 0.3) 100%);
+        }
+
+        .testimonial:hover::before {
+            opacity: 1;
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-warm) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .testimonial-name {
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+
+        .testimonial-role {
+            font-size: 0.85em;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .rating {
+            color: var(--accent-warm);
+            font-size: 0.95em;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .testimonial-text {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 0.95em;
+        }
+
+        .result-badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--success);
+            color: var(--success);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 700;
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Features Section */
+        .features-section {
+            margin: 100px 0;
+            padding: 80px 40px;
+            background: linear-gradient(135deg, rgba(26, 31, 46, 0.3) 0%, rgba(26, 31, 46, 0.1) 100%);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .feature {
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .feature-icon {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-warm) 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+        }
+
+        .feature-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-family: 'Syne', sans-serif;
+        }
+
+        .feature-text {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            text-align: center;
+            padding: 80px 40px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(255, 107, 53, 0.05) 100%);
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            margin: 100px 0 60px;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5em;
+            font-weight: 800;
+            font-family: 'Syne', sans-serif;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .final-cta p {
+            font-size: 1.1em;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatCard {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(0, 212, 255, 0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                margin: 40px 0 60px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2em;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .hero-visual {
+                height: 300px;
+            }
+
+            .card-1, .card-2 {
+                width: 100%;
+            }
+
+            .urgency-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .stats-section {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cta-primary, .cta-secondary {
+                display: block;
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <nav>
+            <div class="logo">EEM26</div>
+            <div class="nav-badge">⚡ Limited Spots</div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Build Your <span class="hero-highlight">Digital Income</span> Empire in 7 Days</h1>
+                <p class="hero-subtitle">Join 300+ students who went from zero to ₦500K monthly using the proven EEM26 ecosystem. Live training this Sunday. Spots limited to 17.</p>
+                
+                <div style="margin-top: 40px;">
+                    <button class="cta-primary" onclick="trackWhatsAppClick(); window.open('https://chat.whatsapp.com/KKyLG2Qr4C2CLIZLObVGcH?mode=gi_t', '_blank');">
+                        🚀 Secure My Spot Now
+                    </button>
+                    <button class="cta-secondary" onclick="document.querySelector('.features-section').scrollIntoView({behavior:'smooth'});">
+                        Learn More ↓
+                    </button>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="visual-card card-1">
+                    <div class="card-label">💰 Monthly Earnings</div>
+                    <div class="card-value">₦500K+</div>
+                    <div class="card-text">Verified from real student withdrawals</div>
+                </div>
+                <div class="visual-card card-2">
+                    <div class="card-label">🌍 Multi-Currency</div>
+                    <div class="card-value">8+</div>
+                    <div class="card-text">NGN, GHS, KES, XAF, and more</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stat-item">
+                <div class="stat-number">₦36M+</div>
+                <div class="stat-label">Total Student Sales</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">300+</div>
+                <div class="stat-label">Active Students</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">8+</div>
+                <div class="stat-label">Currencies Supported</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Money-Back Guarantee</div>
+            </div>
+        </section>
+
+        <!-- Urgency Banner -->
+        <div class="urgency-banner">
+            <div>
+                <div class="urgency-text">
+                    <span class="urgency-highlight">⚠️ THIS SUNDAY ONLY</span> • No Replay • No Recording Access
+                </div>
+                <p style="color: var(--text-secondary); margin-top: 10px; font-size: 0.95em;">Training starts at 8:00 PM WAT — 17 of 75 spots remaining (78% full)</p>
+            </div>
+            <div class="timer-display" id="timerDisplay">
+                00:00:00:00
+            </div>
+        </div>
+
+        <!-- Testimonials -->
+        <section class="testimonials-section">
+            <h2 class="section-title">Real Results from Real Students</h2>
+            <p class="section-subtitle">These are verified Selar dashboards. No fake claims. No promises. Just proof.</p>
+
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <div class="avatar">HS</div>
+                        <div>
+                            <div class="testimonial-name">Halima Sada</div>
+                            <div class="testimonial-role">Kano State • Week 3</div>
+                        </div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p class="testimonial-text">"I almost didn't click the ad. But something felt different. By week 3, I had my first real withdrawal. This system actually works."</p>
+                    <div class="result-badge">✓ First Withdrawal</div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <div class="avatar">EB</div>
+                        <div>
+                            <div class="testimonial-name">Emmanuel Biachi</div>
+                            <div class="testimonial-role">Ibadan • Month 1</div>
+                        </div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p class="testimonial-text">"Tried other methods for a year. Nothing worked. EEM26 is different. Sales in NGN, XAF, GHS. All from one setup."</p>
+                    <div class="result-badge">✓ Multi-Currency</div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <div class="avatar">AN</div>
+                        <div>
+                            <div class="testimonial-name">Ahmad Nasir</div>
+                            <div class="testimonial-role">Kaduna • Affiliate Income</div>
+                        </div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p class="testimonial-text">"Focused on the affiliate side. Made ₦359,400 in affiliate earnings plus XAF and GHS. All step by step. No shortcuts."</p>
+                    <div class="result-badge">✓ ₦359,400</div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <div class="avatar">SO</div>
+                        <div>
+                            <div class="testimonial-name">Samuel Oluranti</div>
+                            <div class="testimonial-role">Ilorin • Multi-Currency</div>
+                        </div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p class="testimonial-text">"Saw 114 people live sharing real dashboards. That convinced me. Sales in NGN, GHS, KES, XAF. All from one weekend build."</p>
+                    <div class="result-badge">✓ Verified Results</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section">
+            <h2 class="section-title">What You'll Get This Sunday</h2>
+            <p class="section-subtitle">Live training. Live results. Live dashboard walk-throughs.</p>
+
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">🔧</div>
+                    <div class="feature-title">Complete System Setup</div>
+                    <div class="feature-text">Step-by-step guide to building your Selar store with AI automation. Copy-paste ready templates included.</div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🤖</div>
+                    <div class="feature-title">AI Marketing Tools</div>
+                    <div class="feature-text">Proven AI tools that handle your marketing while you sleep. Works 24/7 to generate sales.</div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">💰</div>
+                    <div class="feature-title">Monetization Strategies</div>
+                    <div class="feature-text">Multiple income streams. Selar sales, affiliate commissions, and recurring revenue models.</div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🌍</div>
+                    <div class="feature-title">Global Payment Setup</div>
+                    <div class="feature-text">Earn in NGN, GHS, KES, XAF, USD, and more. From a single setup that handles everything.</div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">👥</div>
+                    <div class="feature-title">Live Q&A Session</div>
+                    <div class="feature-text">Direct access to me. Ask anything. Get real answers. Apply immediately during the call.</div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-title">Live Dashboard Demo</div>
+                    <div class="feature-text">See actual student earnings. Real withdrawals. Real proof. Watch it happen live on screen.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="final-cta">
+            <h2>Your First 7 Days Starts Sunday</h2>
+            <p>250+ students have gone from zero to their first ₦50K–₦500K using this exact system. You're next.</p>
+            <button class="cta-primary" onclick="trackWhatsAppClick(); window.open('https://chat.whatsapp.com/KKyLG2Qr4C2CLIZLObVGcH?mode=gi_t', '_blank');">
+                🚀 Secure Your Spot — Only 17 Left
+            </button>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2026 EEM26 — Ecosystem Expansion Model | All Rights Reserved</p>
+            <p style="margin-top: 15px; font-size: 0.85em;">Free Training • Sunday 8:00 PM WAT • No Experience Required</p>
+        </footer>
+    </div>
+
+    <script>
+        // Meta Pixel Conversion Tracking
+        function trackWhatsAppClick() {
+            fbq('track', 'Lead', {
+                content_name: 'EEM26 Training Registration',
+                content_type: 'event',
+                currency: 'NGN',
+                value: 0
+            });
+            console.log('✓ Lead conversion tracked');
+        }
+
+        // Countdown Timer
+        function startTimer() {
+            function updateTimer() {
+                const now = new Date();
+                const currentDay = now.getDay();
+                let daysUntilSunday = 7 - currentDay;
+                
+                if (daysUntilSunday === 0) {
+                    daysUntilSunday = 7;
+                }
+
+                let targetDate = new Date(now);
+                targetDate.setDate(now.getDate() + daysUntilSunday);
+                targetDate.setHours(20, 0, 0, 0);
+
+                const timeRemaining = targetDate.getTime() - now.getTime();
+
+                if (timeRemaining < 0) {
+                    document.getElementById('timerDisplay').textContent = '🔴 TRAINING IS LIVE NOW!';
+                    return;
+                }
+
+                const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+                const timerText = `${String(days).padStart(2, '0')}:${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                document.getElementById('timerDisplay').textContent = timerText;
+            }
+
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+
+        document.addEventListener('DOMContentLoaded', startTimer);
+        startTimer();
+    </script>
+</body>
+</html>
